@@ -48,7 +48,7 @@ fn main() {
     let results: Vec<_> = keys.iter().zip(values.iter()).collect();
     let mut map = phf_codegen::Map::<i32>::new();
     for &(ref key, val) in &results {
-        map.entry(**key, &format!("{:?}", val));
+        map.entry(**key, &format!("({:.3}, {:.3}, {:.3})", val.0,val.1,val.2));
     }
     map.build(&mut outfile).unwrap();
     writeln!(outfile, ";").unwrap();
