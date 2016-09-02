@@ -88,7 +88,7 @@ int main(void) {
 - In the repo root, run `cargo build --release`
 - The dylib or DLL will be available as `target/release/libostn15_phf.{dylib, dll}`
 - If you need to build a `.so` for Linux:
-    1. `ar -x target/release/liblonlat_bng.a`
+    1. `ar -x target/release/libostn15_phf.a`
     2. `gcc -shared *.o -o target/release/libostn15_phf.so`
 
 # License
