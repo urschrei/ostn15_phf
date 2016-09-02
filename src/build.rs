@@ -24,7 +24,7 @@ fn main() {
            "static OSTN15: phf::Map<i32, (f64, f64, f64)> = ")
         .unwrap();
 
-    let mut stmt = conn.prepare("SELECT * FROM ostn15 WHERE key =  '220065' LIMIT 100")
+    let mut stmt = conn.prepare("SELECT * FROM ostn15")
                        .unwrap();
     let ostn15_iter = stmt.query_map(&[], |row| {
                                   Shift {
