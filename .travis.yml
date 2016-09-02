@@ -13,14 +13,3 @@ branches:
 notifications:
   email:
   - urschrei@gmail.com
-after_success: |
-  [ $TRAVIS_BRANCH = master ] &&
-  [ $TRAVIS_PULL_REQUEST = false ] &&
-  cargo doc &&
-  echo "<meta http-equiv=refresh content=0;url=`echo $TRAVIS_REPO_SLUG | cut -d '/' -f 2`/index.html>" > target/doc/index.html &&
-  sudo pip install ghp-import &&
-  ghp-import -n target/doc &&
-  git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
-env:
-  global:
-    secure: rgkZzGqO2UktZ7ZQXlD/0sWILmENWO4+Z3prRBRIWQesT6lCO2n6NlvmCoXizxLc1opuFRdr69Ow6GF2Th6iIDv81QMKx+Of3T8ciWeMRW24Aiu/wxCIMdhcnt7n62xZNSqqVHvN59DqoY9n74zPX8tgNYwfkHo5VUECOthKKdRFLP7gZYUr6TwXJ5U8G9zAPrB9oPCe3+CVQQdcI93n7PuQhTBfPfsL8IWqmUKirCyoro2BCMPUQKYooK/VoEHzrA+IjU4AyaK9o2U6utZUBEaxlH9TTQ9HDPJfH2C7GZrpt1olrb8ABdF5exYOzTbMZgeW6plyelDPeVHR5hVwigOvJD0cMNuZpxrXHyKBoYwGpufKQDZ+GEyU13xOyjTb46ZX71DjGBSFm7JcFkaHkQOhEMElJxtRLV8auMZnlPwLb7GzO34K8Z6JB2tCRbVWSYnFJxnok2Uau152Ii+R3IEbQMtL0vIpTs9Js0kOWxtQobu8+zgJtA17QValR1JTNv5Liybzads3A4nUGxwz+N5NaOXb4ICYBPnCdGoiennkcseaP1uTCcUnmbYSZfonFILUOnzabj5a3nlJ30mj+rQxv6TPEQMiRybEbER+kIPmtYLLKrcwe2eHCVlM3SquQMo2V4CFJ3Nro58IxtFz9S6EHDGgdpUZBmJ5HmNrdTQ=
