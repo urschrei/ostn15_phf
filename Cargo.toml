@@ -1,0 +1,24 @@
+[package]
+name = "ostn15_phf"
+description = "A PHF map of the OSTN15 grid shifts for use in transforming ETRS89 grid coordinates to OSGB36"
+repository = "https://github.com/urschrei/OSTN15_PHF"
+documentation = "https://urschrei.github.io/ostn15_phf/"
+keywords = ["Geo", "ETRS89", "OSGB36", "OSTN02", "OSTN15"]
+version = "0.1.13"
+authors = ["Stephan Hügel <urschrei@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+# build = "src/build.rs"
+
+[build-dependencies]
+phf_codegen = "0.7.16"
+rusqlite = "0.6.0"
+
+[dependencies]
+phf = "0.7.16"
+libc = "0.2.14"
+
+[lib]
+name = "ostn15_phf"
+crate-type = ["rlib", "dylib"]
