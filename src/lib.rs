@@ -136,7 +136,7 @@ pub extern "C" fn get_shifts_ffi(gr: GridRefs) -> Adjustment {
 /// let e_grid = (651307.003 / 1000.) as i32;
 /// let n_grid = (313255.686 / 1000.) as i32;
 /// let key = e_grid + (n_grid * 701) +1;
-/// key should be 220065
+/// // key should be 220065
 /// let result = ostn15_lookup(&key).unwrap();
 /// // result should be (102.787, -78.242, 44.236)
 /// assert_eq!(result, (102.787, -78.242, 44.236));
@@ -146,7 +146,7 @@ pub fn ostn15_lookup(key: &i32) -> Option<(f64, f64, f64)> {
     // if key.is_empty() {
     //     return None;
     // }
-    OSTN15.get(key).cloned();
+    OSTN15.get(key).cloned()
 }
 
 #[test]
