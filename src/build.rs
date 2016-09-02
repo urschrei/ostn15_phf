@@ -24,8 +24,7 @@ fn main() {
            "static OSTN15: phf::Map<i32, (f64, f64, f64)> = ")
         .unwrap();
 
-    let mut stmt = conn.prepare("SELECT key, eastings_offset, northings_offset, height_offset \
-                                 FROM ostn15 LIMIT 100")
+    let mut stmt = conn.prepare("SELECT * FROM ostn15 WHERE key =  '220065' LIMIT 100")
                        .unwrap();
     let ostn15_iter = stmt.query_map(&[], |row| {
                                   Shift {
@@ -42,9 +41,9 @@ fn main() {
     for each in ostn15_iter {
         let record = each.unwrap();
         keys.push(record.key);
-        values.push((record.eastings,
-                     record.northings,
-                     record.height));
+        values.push((record.eastings as f64,
+                     record.northings as f64,
+                     record.height as f64));
     }
     let results: Vec<_> = keys.iter().zip(values.iter()).collect();
     let mut map = phf_codegen::Map::<i32>::new();
