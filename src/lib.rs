@@ -121,7 +121,6 @@ pub extern "C" fn get_shifts_ffi(gr: GridRefs) -> Adjustment {
 
 /// Return a 3-tuple of Easting, Northing, and height adjustments, for use in transforming
 /// ETRS89 Eastings and Northings to OSGB36 Eastings, Northings.  
-/// The key is the combined hex-transformed (03x) kilometer-grid reference of the Northings and Eastings:
 /// 
 /// # Examples
 /// 
