@@ -2,10 +2,6 @@
 //! Look up OSTN15 adjustments for transforming ETRS89 Eastings and Northings
 //! to OSGB36 Eastings and Northings
 
-const MIN_X_SHIFT: f64 = 86.275;
-const MIN_Y_SHIFT: f64 = -81.603;
-const MIN_Z_SHIFT: f64 = 43.982;
-
 use std::f64;
 const NAN: f64 = f64::NAN;
 
@@ -143,9 +139,6 @@ pub extern "C" fn get_shifts_ffi(gr: GridRefs) -> Adjustment {
 /// // remember that the actual adjustment for a coordinate is a bilinear transform, using a square
 /// ```
 pub fn ostn15_lookup(key: &i32) -> Option<(f64, f64, f64)> {
-    // if key.is_empty() {
-    //     return None;
-    // }
     OSTN15.get(key).cloned()
 }
 
