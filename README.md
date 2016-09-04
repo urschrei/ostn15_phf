@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/urschrei/ostn15_phf.png?branch=master)](https://travis-ci.org/urschrei/ostn15_phf) [![](https://img.shields.io/crates/v/ostn15_phf.svg)](https://crates.io/crates/OSTN15_PHF) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](license.txt)  
+[![Build Status](https://travis-ci.org/urschrei/ostn15_phf.png?branch=master)](https://travis-ci.org/urschrei/ostn15_phf) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](license.txt)  
 
 # Description
 A Rust Crate which provides fast lookup of [OSTN15 adjustments](https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/navigation-technology/os-net/surveying.html), for the conversion of ETRS89 grid coordinates to OSGB36.  
