@@ -22,3 +22,6 @@ libc = "0.2.14"
 [lib]
 name = "ostn15_phf"
 crate-type = ["rlib", "dylib"]
+
+[profile.release]
+lto = true
