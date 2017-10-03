@@ -4,7 +4,7 @@ description = "A PHF map of the OSTN15 grid shifts for use in transforming ETRS8
 repository = "https://github.com/urschrei/OSTN15_PHF"
 documentation = "https://urschrei.github.io/ostn15_phf/"
 keywords = ["Geo", "ETRS89", "OSGB36", "OSTN02", "OSTN15"]
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Stephan Hügel <urschrei@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -12,16 +12,16 @@ readme = "README.md"
 # build = "src/build.rs"
 
 [build-dependencies]
-phf_codegen = "=0.7.16"
-rusqlite = "0.6.0"
+phf_codegen = "=0.7.21"
+rusqlite = "0.12.0"
 
 [dependencies]
-phf = "=0.7.16"
-libc = "0.2.14"
+phf = "=0.7.21"
+libc = "0.2.31"
 
 [lib]
 name = "ostn15_phf"
-crate-type = ["rlib", "dylib"]
+crate-type = ["rlib", "cdylib"]
 
 [profile.release]
 lto = true
