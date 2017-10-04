@@ -1,7 +1,9 @@
 [![Build Status](https://travis-ci.org/urschrei/ostn15_phf.png?branch=master)](https://travis-ci.org/urschrei/ostn15_phf) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](license.txt)  
 
 # Description
-A Rust Crate which provides fast lookup of [OSTN15 adjustments](https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/navigation-technology/os-net/surveying.html), for the conversion of ETRS89 grid coordinates to OSGB36.  
+A Rust Crate which provides fast lookup of [OSTN15 adjustments](https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/navigation-technology/os-net/surveying.html), for the conversion of ETRS89 grid coordinates to OSGB36, natively or via FFI.
+## Important
+This library only provides the adjustment _values_. For a complete solution, see the [lonlat_bng](https://github.com/urschrei/lonlat_bng) crate, which provides the OSTN15 _transform_ via FFI, and / or the [convertbng](https://github.com/urschrei/convertbng) Python package.
 
 # Rust Crate Example
 ``` rust
@@ -15,7 +17,6 @@ let key = e_grid + (n_grid * 701) + 1
 let result = ostn15_lookup(&key).unwrap();
 // result should be (102.787, -78.242, 44.236)
 assert_eq!(result, (102.787, -78.242, 44.236));
-// remember that the actual adjustment for a coordinate is a bilinear transform, using a square
 ```
 
 # FFI Examples
