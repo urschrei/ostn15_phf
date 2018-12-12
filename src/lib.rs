@@ -18,9 +18,7 @@ fn get_shifts(tup: (i32, i32)) -> (f64, f64, f64) {
     let key = tup.0 + (tup.1 * 701) + 1;
 
     match ostn15_lookup(&key) {
-        Some(res) => {
-            (res.0, res.1, res.2)
-        }
+        Some(res) => (res.0, res.1, res.2),
         None => (NAN, NAN, NAN),
     }
 }
@@ -76,41 +74,41 @@ impl From<Adjustment> for (f64, f64, f64) {
 /// FFI function returning a 3-tuple of Easting, Northing, and height adjustments, for use in transforming
 /// ETRS89 Eastings and Northings to OSGB36 Eastings, Northings.  
 /// The argument is a Struct containing kilometer-grid references of the ETRS89 Northings and Eastings you wish to convert
-/// 
+///
 /// # Examples
-/// 
+///
 /// ```python
 /// # Python example using ctypes
 /// import sys, ctypes
 /// from ctypes import c_int32, c_double, Structure
-/// 
-/// 
+///
+///
 /// class GridRefs(Structure):
 ///     _fields_ = [("eastings", c_int32),
 ///                 ("northings", c_int32)]
-/// 
+///
 ///     def __str__(self):
 ///         return "({},{})".format(self.eastings, self.northings)
-/// 
-/// 
+///
+///
 /// class Shifts(Structure):
 ///     _fields_ = [("x_shift", c_double),
 ///                 ("y_shift", c_double),
 ///                 ("z_shift", c_double)]
-/// 
+///
 ///     def __str__(self):
 ///         return "({}, {}, {})".format(self.x_shift, self.y_shift, self.z_shift)
-/// 
-/// 
+///
+///
 /// prefix = {'win32': ''}.get(sys.platform, 'lib')
 /// extension = {'darwin': '.dylib', 'win32': '.dll'}.get(sys.platform, '.so')
 /// lib = ctypes.cdll.LoadLibrary(prefix + "ostn02_phf" + extension)
-/// 
+///
 /// lib.get_shifts_ffi.argtypes = (GridRefs,)
 /// lib.get_shifts_ffi.restype = Shifts
-/// 
+///
 /// tup = GridRefs(651, 313)
-/// 
+///
 /// # Should return (102.775, -78.244, 44.252)
 /// print lib.get_shifts_ffi(tup)
 /// ```
@@ -121,12 +119,12 @@ pub extern "C" fn get_shifts_ffi(gr: GridRefs) -> Adjustment {
 
 /// Return a 3-tuple of Easting, Northing, and height adjustments, for use in transforming
 /// ETRS89 Eastings and Northings to OSGB36 Eastings, Northings.  
-/// 
+///
 /// # Examples
-/// 
+///
 /// ```
 /// use ostn15_phf::ostn15_lookup;
-/// 
+///
 /// // Caister Tower Eastings and Northings: 651307.003, 313255.686
 /// let e_grid = (651307.003 / 1000.) as i32;
 /// let n_grid = (313255.686 / 1000.) as i32;
@@ -148,6 +146,9 @@ fn test_internal_ffi() {
 
 #[test]
 fn test_ffi() {
-    let gr = GridRefs {easting: 651, northing: 313};
+    let gr = GridRefs {
+        easting: 651,
+        northing: 313,
+    };
     assert_eq!((102.787, -78.242, 44.236), get_shifts_ffi(gr).into());
 }
