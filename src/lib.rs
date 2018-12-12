@@ -5,10 +5,9 @@
 use std::f64;
 const NAN: f64 = f64::NAN;
 
-extern crate phf;
+use phf;
 include!("ostn15.rs");
 
-extern crate libc;
 use libc::{c_double, int32_t};
 
 /// Return a 3-tuple of adjustments which convert ETRS89 Eastings and Northings

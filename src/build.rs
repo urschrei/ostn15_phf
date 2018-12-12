@@ -1,5 +1,4 @@
-extern crate phf_codegen;
-extern crate rusqlite;
+use phf_codegen;
 use rusqlite::{Connection, NO_PARAMS};
 
 use std::fs::File;
