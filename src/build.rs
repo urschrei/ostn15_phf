@@ -1,6 +1,6 @@
 extern crate phf_codegen;
 extern crate rusqlite;
-use rusqlite::Connection;
+use rusqlite::{Connection, NO_PARAMS};
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -26,7 +26,7 @@ fn main() {
 
     let mut stmt = conn.prepare("SELECT * FROM ostn15")
                        .unwrap();
-    let ostn15_iter = stmt.query_map(&[], |row| {
+    let ostn15_iter = stmt.query_map(NO_PARAMS, |row| {
                                   Shift {
                                       key: row.get(0),
                                       eastings: row.get(1),
