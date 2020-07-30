@@ -18,7 +18,7 @@ rusqlite = "0.15.0"
 
 [dependencies]
 phf = "=0.7.23"
-libc = "0.2.45"
+libc = "0.2.74"
 
 [lib]
 name = "ostn15_phf"
