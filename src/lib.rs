@@ -8,7 +8,7 @@ const NAN: f64 = f64::NAN;
 use phf;
 include!("ostn15.rs");
 
-use libc::{c_double, int32_t};
+use libc::{c_double, i32};
 
 /// Return a 3-tuple of adjustments which convert ETRS89 Eastings and Northings
 /// to OSGB36 Eastings, Northings, and Orthometric height
@@ -25,8 +25,8 @@ fn get_shifts(tup: (i32, i32)) -> (f64, f64, f64) {
 #[repr(C)]
 /// Incoming ETRS89 kilometer-grid references
 pub struct GridRefs {
-    pub easting: int32_t,
-    pub northing: int32_t,
+    pub easting: i32,
+    pub northing: i32,
 }
 
 #[repr(C)]
