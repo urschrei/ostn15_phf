@@ -8,7 +8,7 @@ const NAN: f64 = f64::NAN;
 use phf;
 include!("ostn15.rs");
 
-use libc::{c_double, i32};
+use libc::c_double;
 
 /// Return a 3-tuple of adjustments which convert ETRS89 Eastings and Northings
 /// to OSGB36 Eastings, Northings, and Orthometric height

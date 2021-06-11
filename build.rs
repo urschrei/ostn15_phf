@@ -1,5 +1,5 @@
 use phf_codegen;
-use rusqlite::{Connection, NO_PARAMS};
+use rusqlite::Connection;
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -22,11 +22,13 @@ fn main() {
     write!(outfile, "static OSTN15: phf::Map<i32, (f64, f64, f64)> = ").unwrap();
     let mut stmt = conn.prepare("SELECT * FROM ostn15").unwrap();
     let ostn15_iter = stmt
-        .query_map(NO_PARAMS, |row| Shift {
-            key: row.get(0),
-            eastings: row.get(1),
-            northings: row.get(2),
-            height: row.get(3),
+        .query_map([], |row| {
+            Ok(Shift {
+                key: row.get(0).unwrap(),
+                eastings: row.get(1).unwrap(),
+                northings: row.get(2).unwrap(),
+                height: row.get(3).unwrap(),
+            })
         })
         .unwrap();
     let mut keys = vec![];
@@ -48,6 +50,6 @@ fn main() {
             &format!("({:.3}, {:.3}, {:.3})", val.0, val.1, val.2),
         );
     }
-    map.build(&mut outfile).unwrap();
-    writeln!(outfile, ";").unwrap();
+    writeln!(&mut outfile, "{}", map.build()).unwrap();
+    writeln!(&mut outfile, ";").unwrap();
 }
