@@ -10,7 +10,7 @@ license = "MIT"
 readme = "README.md"
 edition = "2018"
 
-build = "build.rs"
+# build = "build.rs"
 
 [build-dependencies]
 phf_codegen = "=0.8.0"
