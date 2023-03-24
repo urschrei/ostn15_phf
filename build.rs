@@ -1,11 +1,5 @@
-use phf_codegen;
-use rusqlite::Connection;
-
 use std::env;
-use std::fs::File;
-use std::io::prelude::*;
-use std::io::BufWriter;
-
+use phf_codegen;
 const GENERATED_FILE: &'static str = "src/ostn15.rs";
 
 #[derive(Debug)]
@@ -20,6 +14,10 @@ struct Shift {
 fn main() {
     let build_enabled = env::var("BUILD_ENABLED").map(|v| v == "1").unwrap_or(false); // don't run by default
     if build_enabled {
+        use rusqlite::Connection;
+        use std::fs::File;
+        use std::io::prelude::*;
+        use std::io::BufWriter;
         let conn = Connection::open("src/OSTN15.db").unwrap();
 
         let mut outfile = BufWriter::new(File::create(GENERATED_FILE).unwrap());
