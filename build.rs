@@ -14,13 +14,8 @@ struct Shift {
 fn main() {
     let build_enabled = env::var("BUILD_ENABLED").map(|v| v == "1").unwrap_or(false); // don't run by default
     if build_enabled {
-        #[cfg(target_arch = "aarch64-unknown-linux-gnu")]
-        {
-            eprintln!("aarch64-unknown-linux-gnu isn't compatible with the rusqlite dependency in this build script. It will not be run");
-        }
-        // this build section will not run run on Linux aarch64
-        #[cfg(not(target_arch = "aarch64-unknown-linux-gnu"))]
-        {
+        let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
+        if target_arch != "aarch64" {
             eprintln!("Compatible architecture found for build script. Proceeding.");
             use rusqlite::Connection;
             use std::fs::File;
