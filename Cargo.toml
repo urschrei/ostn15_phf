@@ -10,19 +10,16 @@ license = "MIT"
 readme = "README.md"
 edition = "2021"
 
-resolver = "2"
-
-build = "build.rs"
-
-[build-dependencies]
-phf_codegen = "=0.11.1"
-
-[target.'cfg(not(cargo_cfg_target_arch = "aarch64"))'.build-dependencies]
-rusqlite = { version = "0.28.0", features = ["bundled-full"] }
+# UNCOMMENT THE LINES BELOW TO RE-GENERATE THE SHIFTS FROM SQLITE
+# build = "generate_shifts.rs"
+# [build-dependencies]
+# phf_codegen = "=0.11.1"
+# rusqlite = { version = "0.28.0", features = ["bundled-full"] }
+# END OF REGEN LOGIC
 
 [dependencies]
 phf = "=0.11.1"
-libc = "0.2.139"
+libc = "0.2.140"
 
 [lib]
 name = "ostn15_phf"
