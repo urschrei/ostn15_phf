@@ -10,12 +10,12 @@ license = "MIT"
 readme = "README.md"
 edition = "2021"
 
-# UNCOMMENT THE LINES BELOW TO RE-GENERATE THE SHIFTS FROM SQLITE
-# build = "generate_shifts.rs"
-# [build-dependencies]
-# phf_codegen = "=0.11.1"
-# rusqlite = { version = "0.28.0", features = ["bundled-full"] }
-# END OF REGEN LOGIC
+[build-dependencies]
+lzma-rust2 = { version = "0.15", default-features = false, features = [
+    "std",
+    "xz",
+] }
+phf_codegen = "=0.11.1"
 
 [dependencies]
 phf = "=0.11.1"
@@ -25,6 +25,19 @@ libc = "0.2.140"
 name = "ostn15_phf"
 crate-type = ["rlib", "cdylib"]
 
+# Speed up map compilation in debug builds.
+[profile.dev.package.phf]
+opt-level = 3
+
+# Optimise map-generating build script & phf_codegen.
+[profile.dev.build-override]
+opt-level = 3
+
 [profile.release]
 lto = true
 codegen-units = 1
+
+# dev-level of codegen units for build script & phf_codegen, to increase
+# compilation speed, since it doesn't affect the speed of the built library.
+[profile.release.build-override]
+codegen-units = 256
