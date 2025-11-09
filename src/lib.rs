@@ -6,7 +6,10 @@ use std::f64;
 const NAN: f64 = f64::NAN;
 
 use phf;
-include!("ostn15.rs");
+
+// Adds a module named `generated` with a static PHF map named `OSTN15`.
+include!(concat!(env!("OUT_DIR"), "/generated.rs"));
+use generated::OSTN15;
 
 use libc::c_double;
 
