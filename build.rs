@@ -18,7 +18,8 @@ fn main() {
         let (point_id, (e, n, h)) = parse_line(&line);
         // Note the data file shift strings are valid Rust float literals. They are formatted
         // individually (not as a tuple) to prevent the inclusion of quotes.
-        map_builder.entry(point_id, &format!("({e}, {n}, {h})"));
+        let entry = format!("({e}, {n}, {h})");
+        map_builder.entry(point_id, entry);
     }
     let generated_map = map_builder.build();
     write_module(generated_map);
