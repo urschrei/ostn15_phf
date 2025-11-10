@@ -114,7 +114,7 @@ impl From<Adjustment> for (f64, f64, f64) {
 /// # Should return (102.775, -78.244, 44.252)
 /// print lib.get_shifts_ffi(tup)
 /// ```
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn get_shifts_ffi(gr: GridRefs) -> Adjustment {
     get_shifts(gr.into()).into()
 }
