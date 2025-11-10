@@ -1,6 +1,7 @@
 use lzma_rust2::XzReader;
+use std::fmt::Write as _;
 use std::fs::{File, OpenOptions};
-use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::io::{BufRead, BufReader, BufWriter, Write as _};
 use std::path::PathBuf;
 
 /// Path of the xz-compressed OSTN15 shifts data file, relative to the project root.
@@ -12,13 +13,17 @@ const DATA_FILE_PATH: &str = "OSTN15_OSGM15_DataFile.txt.xz";
 fn main() {
     let data_file = open_xz_file(DATA_FILE_PATH);
     let mut map_builder = phf_codegen::Map::<i32>::new();
+    // Mutable string to avoid 1M short-lived allocations via format! macro.
+    let mut string_buf = String::with_capacity(64);
     // Skip header line
     let mut lines = data_file.lines().skip(1);
     while let Some(Ok(line)) = lines.next() {
         let (point_id, (e, n, h)) = parse_line(&line);
         // Note the data file shift strings are valid Rust float literals. They are formatted
         // individually (not as a tuple) to prevent the inclusion of quotes.
-        map_builder.entry(point_id, &format!("({e}, {n}, {h})"));
+        write!(&mut string_buf, "({e}, {n}, {h})").expect("Failed to format tuple string");
+        map_builder.entry(point_id, &string_buf);
+        string_buf.clear();
     }
     let generated_map = map_builder.build();
     write_module(generated_map);
