@@ -6,20 +6,21 @@ documentation = "https://urschrei.github.io/ostn15_phf/"
 keywords = ["Geo", "ETRS89", "OSGB36", "OSTN02", "OSTN15"]
 version = "1.2.3"
 authors = ["Stephan Hügel <urschrei@gmail.com>"]
-license = "MIT"
+license = "BlueOak-1.0.0"
 readme = "README.md"
-edition = "2021"
+edition = "2024"
+categories = ["science::geo"]
 
 [build-dependencies]
 lzma-rust2 = { version = "0.15", default-features = false, features = [
     "std",
     "xz",
 ] }
-phf_codegen = "=0.11.1"
+phf_codegen = "=0.13.1"
 
 [dependencies]
-phf = "=0.11.1"
-libc = "0.2.140"
+phf = "=0.13.1"
+libc = "0.2.177"
 
 [lib]
 name = "ostn15_phf"
