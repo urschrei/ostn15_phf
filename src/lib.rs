@@ -5,7 +5,6 @@
 use std::f64;
 const NAN: f64 = f64::NAN;
 
-use phf;
 
 // Adds a module named `generated` with a static PHF map named `OSTN15`.
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
