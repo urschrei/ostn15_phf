@@ -57,10 +57,11 @@ print(lib.get_shifts_ffi(result))
 
 ## C
 ``` c
-// compile with e.g. `clang -lostn15_phf -L target/release -o ostn15_shifts  src/ostn15.c` from project root
+// compile with e.g. `clang -lostn15_phf -L target/release -o ostn15_shifts src/ostn15.c` from project root
 // run with `LD_LIBRARY_PATH=target/release ./ostn15_shifts` from project root
 #include <stdio.h>
 #include <stdint.h>
+#include <math.h>
 
 typedef struct {
   int32_t easting;
@@ -76,9 +77,22 @@ typedef struct {
 extern adjustment get_shifts_ffi(gridrefs);
 
 int main(void) {
+  // Caister Tower example: 651307.003, 313255.686
+  // Convert to grid coordinates by dividing by 1000
   gridrefs initial = { .easting = 651, .northing = 313 };
   adjustment adj = get_shifts_ffi(initial);
-  printf("(%f, %f, %f)\n", adj.x_shift, adj.y_shift, adj.z_shift);
+
+  // Check if the lookup was successful (NAN indicates failure)
+  if (isnan(adj.x_shift) || isnan(adj.y_shift) || isnan(adj.z_shift)) {
+    fprintf(stderr, "Error: Grid reference lookup failed\n");
+    return 1;
+  }
+
+  // Print the adjustment values
+  // Expected result: (102.787, -78.242, 44.236)
+  printf("Adjustment shifts: (%.3f, %.3f, %.3f)\n",
+         adj.x_shift, adj.y_shift, adj.z_shift);
+
   return 0;
 }
 ```
