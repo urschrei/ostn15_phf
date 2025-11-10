@@ -107,6 +107,6 @@ int main(void) {
     2. `gcc -shared *.o -o target/release/libostn15_phf.so`
 
 # License
-[MIT](LICENSE)  
+[The Blue Oak Model License](LICENSE)  
 
 This software makes use of OSTN15 data, which is © Crown copyright, Ordnance Survey and the Ministry of Defence (MOD) 2016. All rights reserved. Provided under the BSD 2-clause [license](OSTN15_license.txt).
