@@ -9,6 +9,7 @@ authors = ["Stephan Hügel <urschrei@gmail.com>"]
 license = "BlueOak-1.0.0"
 readme = "README.md"
 edition = "2024"
+categories = ["science::geo"]
 
 [build-dependencies]
 lzma-rust2 = { version = "0.15", default-features = false, features = [
