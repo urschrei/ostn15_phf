@@ -4,3 +4,18 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+  groups:
+    cargo-updates:
+      applies-to: version-updates
+      patterns:
+        - "*"
+
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  groups:
+    gha-updates:
+      applies-to: version-updates
+      patterns:
+        - "*"
