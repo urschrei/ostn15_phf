@@ -11,7 +11,7 @@ edition = "2024"
 categories = ["science::geo"]
 
 [build-dependencies]
-lzma-rust2 = { version = "0.15", default-features = false, features = [
+lzma-rust2 = { version = "0.16", default-features = false, features = [
     "std",
     "xz",
 ] }
