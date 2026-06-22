@@ -15,10 +15,10 @@ lzma-rust2 = { version = "0.16", default-features = false, features = [
     "std",
     "xz",
 ] }
-phf_codegen = "=0.13.1"
+phf_codegen = "=0.14.0"
 
 [dependencies]
-phf = "=0.13.1"
+phf = "=0.14.0"
 libc = "0.2.177"
 
 [lib]
