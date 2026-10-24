@@ -2,9 +2,7 @@
 //! Look up OSTN15 adjustments for transforming ETRS89 Eastings and Northings
 //! to OSGB36 Eastings and Northings
 
-use std::f64;
 const NAN: f64 = f64::NAN;
-
 
 // Adds a module named `generated` with a static PHF map named `OSTN15`.
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
